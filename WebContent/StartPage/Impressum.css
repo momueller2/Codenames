@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+body {
+	color: white;
+	margin: 0;
+	font-size: 150%;
+	font-family: Trebuchet MS, Arial, sans-serif;
+	background-size: cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.background {
+	background: rgba(0, 0, 0, 0) radial-gradient(circle, rgb(231, 102, 60)
+		0%, rgb(72, 12, 2) 100%) repeat scroll 0% 0%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.background-image {
+	background-image: url(assets/backgrounds/bg-raster.svg);
+	position: absolute;
+	mix-blend-mode: overlay;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-size: cover;
+	text-align: center;
+}

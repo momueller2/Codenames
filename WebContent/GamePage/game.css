@@ -1,0 +1,853 @@
+body {
+	margin: 0;
+	font-size: 16px;
+	font-family: Trebuchet MS, Arial, sans-serif;
+	background-size: cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.background {
+	background: rgba(0, 0, 0, 0) radial-gradient(circle, rgb(231, 102, 60)
+		0%, rgb(72, 12, 2) 100%) repeat scroll 0% 0%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.background-image {
+	background-image: url(assets/backgrounds/bg-raster.svg);
+	position: absolute;
+	mix-blend-mode: overlay;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-size: cover;
+}
+
+.wrapper {
+	display: grid;
+	grid-template-columns: 0.7fr auto 0.7fr;
+	grid-template-rows: 0.2fr 2.3fr 0.5fr;
+	gap: 0px 0px;
+	grid-auto-flow: row;
+	grid-template-areas: "player info option" "blueSide grid redSide"
+		". input .";
+	position: relative;
+}
+
+.playerCount {
+	grid-area: player;
+	justify-self: center;
+	align-self: center;
+	background: rgb(255, 228, 0);
+	border-radius: 15px;
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 246, 167) rgb(255, 228, 0) rgb(243, 187, 0);
+	margin-top: 5px;
+	margin-bottom: 5em;
+	font-size: 1.2em;
+	padding: 0.3rem 1rem 0.3rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	cursor: pointer;
+}
+
+.playerCount:hover {
+	background-color: rgb(255, 211, 0);
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 240, 120) rgb(255, 211, 0) rgb(225, 151, 8);
+}
+
+.info {
+	grid-area: info;
+	justify-self: center;
+	align-self: center;
+	background: white;
+	border-radius: 10px;
+	border-style: 2px solid white;
+	margin-top: 2em;
+	margin-bottom: 1em;
+	font-weight: bold;
+	font-size: 1.5em;
+	padding: 0.3rem 0.5rem 0.3rem
+}
+
+.optionPanel {
+	grid-area: option;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 10px;
+}
+
+.rulesButton {
+	background: rgb(255, 228, 0);
+	border-radius: 15px;
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 246, 167) rgb(255, 228, 0) rgb(243, 187, 0);
+	font-size: 1.2em;
+	margin-top: 5px;
+	margin-bottom: 5em;
+	padding: 0.3rem 1rem 0.3rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	cursor: pointer;
+}
+
+.rulesButton:hover {
+	background-color: rgb(255, 211, 0);
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 240, 120) rgb(255, 211, 0) rgb(225, 151, 8);
+}
+
+#rulesDialog {
+	visibility: hidden;
+}
+
+.rulesTitlePanel {
+	background-color: rgb(229, 231, 235);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	padding: 5px;
+}
+
+
+.rulesTitlePanel>h2 {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.rulesTitlePanel>p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-size: 18px;
+}
+
+.rulesTitle {
+	color: rgb(157, 23, 77);
+}
+
+.closeButton {
+	background: url(assets/backgrounds/close_button.svg), rgb(255, 228, 0);
+	background-position: center, center;
+	cursor: pointer;
+	border-color: rgb(255, 240, 120) rgb(255, 211, 0) rgb(225, 151, 8);
+	border-style: solid;
+	border-width: 2px 1px;
+	border-radius: 9999px;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 2rem;
+	height: 2rem;
+	margin-top: 1rem;
+	margin-right: 1rem;
+}
+
+.closeButton:hover {
+	background-color: rgb(255, 211, 0);
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 240, 120) rgb(255, 211, 0) rgb(225, 151, 8);
+}
+
+.rulesContent {
+	height: 800px;
+	overflow: auto;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.rulesContent>blockquote {
+	margin: 0.5rem 0px;
+	background-color: rgb(192, 235, 238);
+	padding: 0.5rem 0.75rem;
+}
+
+.rulesWith2Figures {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1rem;
+	align-items: flex-end;
+}
+
+.rulesWith3Figures {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+	align-items: flex-end;
+}
+
+section>figure {
+	margin: 1em 0 1em;
+}
+
+.figureDiv {
+	padding-top: 10px;
+	position: relative;
+}
+
+.rulesContent>p {
+	margin: 0.5rem 0px 0.9rem;
+	line-height: 1.5rem;
+}
+
+.rulesContent>h2 {
+	font-size: 1.4rem;
+	font-weight: bold;
+	margin-top: 2.2rem;
+	margin-bottom: 0.5rem;
+}
+
+.figure {
+	position: relative;
+	max-width: 100%;
+	height: auto;
+}
+
+figcaption {
+	line-height: 1.5em;
+}
+
+.figureCaption {
+	margin: 0.5rem 0px;
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.figureCaption>section {
+	flex: 1 1 0%;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.rulesFingerIcon {
+	width: 1.5rem;
+	display: inline;
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+
+.rulesSummary {
+	font-weight: bold;
+	color: rgb(0, 163, 224);
+	line-height: 1.5rem;
+	cursor: pointer;
+	display: list-item;
+}
+
+.numberOfGuessesRuleText {
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+	display: flex;
+}
+
+.numberOfGuessesRuleDiv {
+	flex: none;
+	width: 320px;
+	margin-left: 0.25rem;
+	position: relative;
+}
+
+li {
+	padding-bottom: 0.6rem;
+}
+
+.bg-yellow {
+	background-color: rgb(253, 227, 1);
+}
+
+.optionsButton {
+	background: rgb(255, 136, 30);
+	border-radius: 15px;
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 136, 30) rgb(255, 166, 85) rgb(198, 111, 19);
+	font-size: 1.2em;
+	margin-top: 5px;
+	margin-bottom: 5em;
+	padding: 0.3rem 1rem 0.3rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	cursor: pointer;
+}
+
+.optionsButton:hover {
+	background-color: rgb(255, 84, 13);
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 104, 13) rgb(255, 100, 34) rgba(189, 50, 7, 0.96);
+}
+
+.blueSide {
+	grid-area: blueSide;
+	display: grid;
+	grid-template-rows: 1fr;
+	gap: 5px;
+	padding: 1em;
+	border-radius: 10px;
+	background: rgb(0, 128, 192);
+	width: 60%;
+	height: 45%;
+	justify-self: center;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	position: relative;
+	grid-auto-flow: row;
+	grid-template-columns: 1fr;
+}
+
+.blueCharacter {
+	background-image: url(assets/characters/blue_character_1.png),
+		url(assets/backgrounds/blue_character_back.png);
+	background-size: contain, contain;
+	background-repeat: no-repeat, no-repeat;
+	background-position: center;
+	width: 150px;
+	height: 80px;
+	position: absolute;
+	top: 18px;
+	left: 154px;
+	right: 0;
+	bottom: 0;
+}
+
+.grid {
+	width: 1000px;
+	height: 600px;
+	grid-area: grid;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+}
+
+.card {
+	position: relative;
+}
+
+#white {
+	background-image: url(assets/backgrounds/white_front.png);
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	position: absolute;
+	width: 192px;
+	height: 112px;
+}
+
+#red {
+	background-image: url(assets/backgrounds/red_front.png);
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	position: absolute;
+	width: 192px;
+	height: 112px;
+}
+
+#blue {
+	background-image: url(assets/backgrounds/blue_front.png);
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	position: absolute;
+	width: 192px;
+	height: 112px;
+}
+
+#black {
+	background-image: url(assets/backgrounds/black_front.png);
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	color: white;
+	position: absolute;
+	width: 192px;
+	height: 112px;
+}
+
+.card_text {
+	font-size: 1.3em;
+	font-weight: bold;
+	padding-bottom: 20px;
+	flex: auto;
+	text-align: center;
+	font-family: Arial, sans-serif;
+}
+
+.selected-border {
+	width: 193px;
+	height: 110px;
+	border-style: solid;
+	box-sizing: border-box;
+	z-index: 1;
+	border-width: 5px;
+	border-color: yellow;
+	border-radius: 10px;
+	position: absolute;
+}
+
+.guess_field {
+	background: red;
+	visibility: hidden;
+	align-self: start;
+	text-align: left;
+	color: white;
+	font-size: 16px;
+	font-family: Verdana;
+	position: absolute;
+	left: 7%;
+	top: 10%;
+}
+
+.guess_button {
+	background-color: rgb(255, 228, 0);
+	cursor: pointer;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	position: absolute;
+	background-image: url(assets/backgrounds/icon_tap_card.png);
+	background-size: cover;
+	right: 0px;
+	top: 0px;
+	height: 40px;
+	width: 40px;
+	border: 0 solid;
+	border-radius: 9999px;
+	visibility: hidden;
+}
+
+.redSide {
+	grid-area: redSide;
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr;
+	grid-auto-flow: row;
+	gap: 5px;
+	padding: 1em;
+	border-radius: 10px;
+	background: rgb(185, 38, 38);
+	width: 60%;
+	height: 45%;
+	justify-self: center;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	position: relative;
+	grid-auto-flow: row;
+}
+
+.counter {
+	font-size: 32px;
+	color: white;
+	margin-left: 1vw;
+	margin-top: 1vw;
+}
+
+.redCharacter {
+	background-image: url(assets/characters/red_character_1.png),
+		url(assets/backgrounds/red_character_back.png);
+	background-size: contain, contain;
+	background-repeat: no-repeat, no-repeat;
+	background-position: center;
+	width: 150px;
+	height: 80px;
+	position: absolute;
+	top: 18px;
+	left: 154px;
+	right: 0;
+	bottom: 0;
+}
+
+.players {
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	grid-auto-flow: row;
+	grid-gap: 0.2em;
+}
+
+.operativeBlue {
+	color: rgb(125, 184, 255);
+	align-self: end;
+}
+
+.spymasterBlue {
+	color: rgb(125, 184, 255);
+	align-self: end;
+}
+
+.operativeRed {
+	color: rgb(236, 123, 85);
+	align-self: end;
+}
+
+.spymasterRed {
+	color: rgb(236, 123, 85);
+	align-self: end;
+}
+
+.joinButton {
+	justify-self: start;
+	align-self: center;
+	background: rgb(255, 228, 0);
+	border-radius: 15px;
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 246, 167) rgb(255, 228, 0) rgb(243, 187, 0);
+	font-size: 1.2em;
+	padding: 0.3rem 1rem 0.3rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	cursor: pointer;
+}
+
+.name {
+	color: white;
+	align-self: center;
+	margin-left: 0.25em;
+}
+
+.clue_panel {
+	display: flex;
+	grid-area: input;
+	justify-content: center;
+	align-self: baseline;
+	padding: 5px;
+	text-align: center;
+	margin-top: 10px;
+	column-gap: 10px;
+	width: 100%;
+	align-items: center;
+	position: absolute;
+	visibility: hidden;
+}
+
+.clue_field {
+	background: white;
+	border-radius: 10px;
+	border: 2px solid white;
+	flex-grow: 1;
+	max-width: 400px;
+	text-align: start;
+	font-size: 1.5em;
+	padding: 0.3rem 0.5rem 0.3rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.clue_number {
+	appearance: none;
+	background: white;
+	border-radius: 10px;
+	border: 2px solid white;
+	cursor: pointer;
+	font-size: 1.5em;
+	padding: 0.3rem 0.5rem 0.3rem;
+	display: flex;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	text-align: center;
+}
+
+.clue_button {
+	background-color: rgb(106, 233, 17);
+	border-radius: 20px;
+	border: 2px solid rgb(106, 233, 17);
+	cursor: pointer;
+	font-size: 1.5em;
+	padding: 0.3rem 1rem 0.3rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.bottom_panel {
+	display: flex;
+	flex-direction: column;
+	grid-area: input;
+	margin-top: 10px;
+	width: 100%;
+	position: absolute;
+	visibility: hidden;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.end_button {
+	background: rgb(255, 228, 0);
+	border-radius: 15px;
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 246, 167) rgb(255, 228, 0) rgb(243, 187, 0);
+	font-size: 1.2em;
+	margin-top: 5px;
+	margin-bottom: 5em;
+	padding: 0.3rem 1rem 0.3rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	cursor: pointer;
+}
+
+.end_button:hover {
+	background-color: rgb(255, 211, 0);
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 240, 120) rgb(255, 211, 0) rgb(225, 151, 8);
+}
+
+.clue_button:hover {
+	background-color: rgb(88, 198, 15);
+	border: 2px solid rgb(88, 198, 15);
+}
+
+.selected_clue_panel {
+	display: flex;
+	justify-content: center;
+}
+
+.selected_clue_text {
+	background: white;
+	border-radius: 17px;
+	font-size: 3em;
+	font-weight: bold;
+	padding: 0.3rem 1rem 0.3rem;
+}
+
+.rulesDialog {
+	display: none;
+	flex-direction: column;
+	border-radius: 15px;
+	background-color: white;
+}
+
+.roomLinkPanel {
+	display: flex;
+	visibility: hidden;
+	flex-direction: column;
+	align-items: center;
+	background-color: white;
+	border-style: solid;
+	border-color: white;
+	border-width: 2px 1px;
+	border-radius: 1rem;
+	position: absolute;
+	top: 3em;
+	padding: 5px 10px 5px;
+	grid-area: player;
+	justify-self: center;
+	align-self: center;
+	width: 20rem;
+	z-index: 1;
+}
+
+.linkCaption {
+	color: rgb(29, 78, 216);
+	text-align: center;
+	margin-bottom: 0.5rem;
+	margin-top: 0.5rem;
+	font-size: 15px;
+}
+
+.roomLink {
+	text-align: center;
+	background-color: white;
+	border-color: gray;
+	border-radius: 1rem;
+	width: 80%;
+	padding: 0.7rem;
+	font-size: 1em;
+}
+
+.linkButton {
+	border-radius: 1rem;
+	color: black;
+	background-color: rgb(255, 228, 0);
+	border-color: rgb(255, 246, 167) rgb(255, 228, 0) rgb(243, 187, 0);
+	border-style: solid;
+	border-width: 2px 1px;
+	cursor: pointer;
+	padding: 0.3rem 1rem 0.3rem;
+	font-size: 1.2rem;
+	margin: 0.5rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.linkButton:hover {
+	background-color: rgb(255, 211, 0);
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 240, 120) rgb(255, 211, 0) rgb(225, 151, 8);
+}
+
+.leaveRoomButton {
+	border-radius: 1rem;
+	color: black;
+	background-color: rgb(255, 228, 0);
+	border-color: rgb(255, 246, 167) rgb(255, 228, 0) rgb(243, 187, 0);
+	border-style: solid;
+	border-width: 2px 1px;
+	cursor: pointer;
+	padding: 0.3rem 1rem 0.3rem;
+	font-size: 1.2rem;
+	margin: 0.5rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.leaveRoomButton:hover {
+	background-color: rgb(255, 211, 0);
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 240, 120) rgb(255, 211, 0) rgb(225, 151, 8);
+}
+
+.optionsPanel {
+	display: flex;
+	visibility: hidden;
+	flex-direction: column;
+	align-items: center;
+	background-color: white;
+	position: absolute;
+	border-radius: 1rem;
+	top: 3em;
+	grid-area: option;
+	justify-self: center;
+	align-self: center;
+	z-index: 1;
+}
+
+.updateButton {
+	border-radius: 1rem;
+	color: black;
+	background-color: rgb(255, 228, 0);
+	border-color: rgb(255, 246, 167) rgb(255, 228, 0) rgb(243, 187, 0);
+	border-style: solid;
+	border-width: 2px 1px;
+	cursor: pointer;
+	padding: 0.3rem 1rem 0.3rem;
+	font-size: 1.2rem;
+	margin: 0.5rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.updateButton:hover {
+	background-color: rgb(255, 211, 0);
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 240, 120) rgb(255, 211, 0) rgb(225, 151, 8);
+}
+
+.namePanel {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #cac3c3ad;
+	border-style: none none solid;
+	border-color: #ccc9c9;
+	border-width: 2px 1px;
+	border-radius: 1rem;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	justify-self: center;
+	padding: 5px 10px 5px;
+}
+
+.nickNameLabel {
+	text-align: center;
+	margin-bottom: 0.5rem;
+	margin-top: 0.5rem;
+	font-size: 16px;
+}
+
+.nickNameField {
+	text-align: center;
+	background-color: white;
+	border-color: gray;
+	border-radius: 1rem;
+	width: 80%;
+	padding: 0.7rem;
+	font-size: 1em;
+}
+
+.copiedLinkCaption {
+	background-color: black;
+	color: white;
+	visibility: hidden;
+	border-width: 2px 1px;
+	border-radius: 1rem;
+	position: absolute;
+	top: 2.5em;
+	left: 8em;
+	padding: 5px 10px 5px;
+	grid-area: player;
+	align-self: center;
+	margin: auto;
+}
+
+.dialogInputPanel {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+}
+
+.nameDialog {
+	box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
+	margin: auto;
+	position: fixed;
+	left: 0;
+	right: 0;
+}
+
+.dialogButtonPanel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #80808078;
+	border-bottom-right-radius: 12px;
+	border-bottom-left-radius: 12px;
+	margin-top: 17px;
+	height: 45px;
+}
+
+.dialogButton {
+	background: rgb(255, 228, 0);
+	border-radius: 15px;
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 246, 167) rgb(255, 228, 0) rgb(243, 187, 0);
+	font-size: 1.2em;
+	margin: 10px 5px 5px 0px;
+	padding: 0.3rem 1rem 0.3rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	cursor: pointer;
+}
+
+.dialogButton:hover {
+	color: black;
+	background-color: rgb(255, 211, 0);
+	border-style: solid;
+	border-width: 2px 1px;
+	border-color: rgb(255, 240, 120) rgb(255, 211, 0) rgb(225, 151, 8);
+}
+
+#gameOverHeadline {
+	margin: 1em;
+	font-size: 1.5em;
+}
